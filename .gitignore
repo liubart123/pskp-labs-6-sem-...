@@ -1,3 +1,8 @@
+
+*.docx
+!lab.docx
+
+
 # Logs
 logs
 *.log

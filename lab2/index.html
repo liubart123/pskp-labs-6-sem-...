@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>2</title>
+</head>
+
+<body>
+    <input type="text" id="pulpit" placeholder="pulpit">
+    <input type="text" id="pulpit_name" placeholder="pulpit_name">
+    <input type="text" id="faculty" placeholder="faculty">
+    <button onclick="get('pulpits')">get</button>
+    <button onclick="delete_element('pulpits')">delete_element</button>
+    <button onclick="update_element('pulpits')">update_element</button>
+    <button onclick="insert_element('pulpits')">insert_element</button>
+    <div id="get_result"></div>
+
+    <script>
+        var jsonArray;
+        var templateObject;
+
+        var currentTable = "";
+
+        function get(get_table) {
+            currentTable = get_table;
+            fetch(`http://localhost:3000/api/${get_table}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                get_result.innerHTML = JSON.stringify(data);
+            }).catch(err=>{
+                console.log(err);
+                get_result.innerHTML = err;
+            })
+        }
+
+        function update_element(table) {
+            let body =JSON.stringify({pulpit:pulpit.value, pulpit_name:pulpit_name.value, faculty:faculty.value});
+            fetch(`http://localhost:3000/api/${table}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: body
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                get_result.innerHTML = JSON.stringify(data);
+            }).catch(err=>{
+                console.log(err);
+                get_result.innerHTML = err;
+            })
+        }
+
+        function delete_element(table) {
+            fetch(`http://localhost:3000/api/${table}/${pulpit.value}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                get_result.innerHTML = JSON.stringify(data);
+            }).catch(err=>{
+                console.log(err);
+                get_result.innerHTML = err;
+            })
+        }
+        
+        function insert_element(table) {
+            let body =JSON.stringify({pulpit:pulpit.value, pulpit_name:pulpit_name.value, faculty:faculty.value});
+            fetch(`http://localhost:3000/api/${table}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: body
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                get_result.innerHTML = JSON.stringify(data);
+            }).catch(err=>{
+                console.log(err);
+                get_result.innerHTML = err;
+            })
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

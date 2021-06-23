@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Main page</title>
+    <script src="jquery.js"
+     type="text/javascript"></script>
+</head>
+<body>
+<div id="result"></div>
+    <script>
+	function send()
+	{
+        $.ajax ({
+            type: "POST",
+            url:"./" + $("#ur").val(),
+            dataType:'text',
+            success: function(response) {
+            document.getElementById("result").innerHTML=response;
+            },
+            error: function(response) {
+            document.getElementById("result").innerHTML=response;
+            }
+        })
+	};
+    </script>
+    <input type="text" id="ur"/><br/>
+    <button onclick="send()">Send</button><br/>
+</body>
+</html>

@@ -1,0 +1,13 @@
+juliaa.klepaski
+Cvthnmyfgj7
+
+
+md/folder1   		создать дирек в ФХ	createDirectori(url)
+rd/folder1		удалить дирек в ФХ	deleteFile(url)
+
+copy/1.jpg/2.jpg	копир 1 в 2 (ФХ)	copyFile(source,destin)
+move/1.jpg/2.jpg	перем 1 в 2 (ФХ)	moveFile(source,destin)
+del/2.jpg		удал 2 из ФХ		deleteFile(url)
+
+down/3.jpg		скачать 3 из ФХ		в files/down.jpg
+up/5.jpg		записать 5 в ФХ		ФХ: up.jpg

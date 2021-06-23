@@ -1,0 +1,375 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "TS API",
+        "description": "Description for phonebook API from lab31",
+        "termsOfService": "https://google.com",
+        "contact": {
+            "name": "Contact",
+            "url": "https://example.com/contact-url",
+            "email": "email@email.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0-my-version"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:{port}/",
+            "description": "Server for API development",
+            "variables": {
+                "port": {
+                    "enum": ["3000", "5000"],
+                    "default": "5000",
+                    "description": "port number of API server"
+                }
+            }
+        },
+        {
+            "url": "http://not-existing-path/",
+            "description": "This path is just for example"
+        }
+    ],
+    "paths": {
+        "/ts" :{
+            "description": "phonebook API base address",
+            "summary": "methods for manipulating with phonebook",
+            "get":{
+                "tags": ["telephones", "get"],
+                "summary": "get all telephone numbers from database (summary)",
+                "description": "get all telephone numbers from database (description)",
+                "operationId": "get-all-telephone-numbers",
+                "externalDocs":{
+                    "description": "Find more info here",
+                    "url": "https://google.com"
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page of telephone numbers to get",
+                        "required": false,
+                        "deprecated": false,
+                        "allowEmptyValue": true,
+                        "schema":{
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1
+                        },
+                        "explode": false,
+                        "examples":{
+                            "valid":{"value": 1}
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully get all telephone numbers",
+                        "content": {
+                            "application/json":{
+
+                                "schema": {
+                                    "type": "array",
+                                    "minItems": 0,
+                                    "items": {
+                                      "$ref": "#/components/schemas/Telephone"
+                                    }
+                                }
+                            }
+                        }
+                        
+                    },
+                    "500":{
+                        "$ref": "#/components/responses/default"                        
+                    }
+                },
+                "deprecated": false
+            },
+
+
+
+            "post":{
+                "tags": ["post", "telephones"],
+                "summary": "create new telephone number (summary)",
+                "description": "create new telephone number (description)",
+                "operationId": "post-telephone-number",
+                "requestBody":{
+                    "description": "request body should contain new telephone number in json format",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "number": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 15,
+                                        "example":"+375251234567"
+                                    }
+                                },
+                                "required": ["number"]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "successfully create new telephone number",
+                        "content": {
+                            "application/json":{
+                                
+                                "schema": {
+                                    "$ref": "#/components/schemas/Telephone"
+                                }
+                                
+                            }
+                        }
+                        
+                    },
+
+
+                    "400": {
+                        "description": "request with invalid body was sent",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "array",
+                                    "minItems": 0,
+                                    "items": {
+                                      "$ref": "#/components/schemas/Error400"
+                                    }
+                                }
+                            }
+                        }
+                    },
+
+
+                    "500":{
+                        "$ref": "#/components/responses/default"                        
+                    }
+                },
+                "deprecated": false
+            },
+
+
+
+            "put":{
+                "tags": ["put", "telephones"],
+                "summary": "updates telephone number (summary)",
+                "description": "updates telephone number (description)",
+                "operationId": "put-telephone-number",
+                "requestBody":{
+                    "description": "request body should contain telephone number in json format with id that is presented in database",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/Telephone"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful update of telephone number",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "$ref": "#/components/schemas/Telephone"
+                                }
+                                
+                            }
+                        }
+                        
+                    },
+
+
+                    "400": {
+                        "description": "request with invalid body was sent",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "array",
+                                    "minItems": 0,
+                                    "items": {
+                                      "$ref": "#/components/schemas/Error400"
+                                    }
+                                }
+                            }
+                        }
+                    },
+
+                    "404": {
+                        "$ref": "#/components/responses/PhoneNotFound"  
+                    },
+
+
+                    "500":{
+                        "$ref": "#/components/responses/default"                        
+                    }
+                },
+                "deprecated": false
+            }
+
+        },
+        "/ts/{id}":{
+            "description": "represents one telephone number from telephone numbers as resource",
+            "summary": "methods for manipulating with ONE telephone number from SPRAVOCHNICK",
+            "delete":{
+                "tags": ["delete", "telephones"],
+                "summary": "deletes one telephone number from database (summary)",
+                "description": "deletes one telephone number from database (description)",
+                "operationId": "delete-one-telephone-number-by-id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "telephone number id to delete",
+                        "required": true,
+                        "deprecated": false,
+                        "allowEmptyValue": false,
+                        "schema":{
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "explode": false,
+                        "examples":{
+                            "valid":{"value": 1},
+                            "invalid":{"value": 0}
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "telephone number was successfully deleted by id"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/PhoneNotFound"  
+                    },
+                    "500":{
+                        "$ref": "#/components/responses/default"                        
+                    }
+                },
+                "deprecated": false
+            }
+        }
+
+
+
+            
+        
+    },
+    "components": {
+        "schemas": {
+            "Errors": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type":"array",
+                        "items": {
+                            "$ref":"#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+          "Error": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "nullable": true,
+                "example": "E_NOTFOUND"
+              },
+              "message": {
+                "type": "string",
+                "nullable": true,
+                "example": "Cannot find resource by provided id"
+              }              
+            },
+            "additionalProperties": { }
+          },
+          "Error400": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "nullable": true,
+                "example": "E_VALIDATION"
+              },
+              "message": {
+                "type": "string",
+                "nullable": true,
+                "example": "Provided telephone number has invalid format"
+              }              
+            },
+            "additionalProperties": { }
+          },
+          "Telephone": {
+            "required": [
+              "number"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "Id of number",
+                "format": "int32",
+                "example": 1
+              },
+              "number": {
+                "pattern": "^+375(25|29|44)\\d{7}$",
+                "type": "string",
+                "description": "Telephone number",
+                "example": "+375251234567"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "responses":{
+            "default":{
+                "description":"Internal server error",
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "type": {
+                                    "type":"string",
+                                    "example":"E_INTERNALERROR",
+                                    "nullable": false
+                                },
+                                "message":{
+                                    "type":"string",
+                                    "nullable":false,
+                                    "example":"Internal server error"
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            },
+            "PhoneNotFound":{
+                "description":"Telephone number cannot be found",
+                "content": {
+                    "application/json":{
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        }
+      },
+    "tags": [
+        {
+            "name": "TS API",
+            "description": "Phonebook API"
+        }
+    ]
+}
+

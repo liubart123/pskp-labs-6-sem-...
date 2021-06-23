@@ -1,0 +1,29 @@
+openssl genrsa -des3 -out CA.key 2048
+
+set OPENSSL_CONF=d:\sem6\pskp\lab9SASL\openssl-1.0.2j-fips-x86_64\OpenSSL\bin\openssl.cnf
+openssl req -x509 -new -key CA.key -days 700 -sha256 -out CA.crt -config CA.cfg
+
+
+openssl genrsa -out LAB.key 2048
+
+
+openssl x509 -req -in LAB.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out LAB.crt -days 365 -sha256 -extensions v3_req -extfile LAB.cfg
+
+
+
+
+
+---------------
+openssl genrsa -out rootCA.key 2048
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+
+
+openssl req -newkey rsa:4096             -x509             -sha256             -days 3650             -nodes             -out example.crt             -keyout example.key             -subj "/C=SI/ST=Ljubljana/L=Ljubljana/O=Security/OU=IT Department/CN=www.example.com"
+
+
+
+
+
+
+
+

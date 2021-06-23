@@ -1,0 +1,17 @@
+{
+  "name": "lab20js-hbs",
+  "version": "1.0.0",
+  "description": "Lab20",
+  "main": "20-01.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start":"node 20-01.js"
+  },
+  "author": "Julia Chistyakova",
+  "license": "ISC"
+}

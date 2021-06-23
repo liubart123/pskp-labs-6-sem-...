@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "1778af27-5953-4c4a-bd38-f44ccbeb8365",
+		"name": "lab18",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETFaculites",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/faculties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"faculties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETPulpits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/pulpits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pulpits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSubjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/subjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"subjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAuditoium_types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriumstypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriumstypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAuditoriums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERTFaculty",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"faculty\":\"FCT\",\n\t\"faculty_name\":\"Foreign control technics\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/faculties",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"faculties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateFaculty",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"faculty\":\"FCT\",\n\t\"faculty_name\":\"FCT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/api/faculties",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"faculties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFaculty",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/faculties/FCT",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"faculties",
+						"FCT"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERTPulpits",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pulpit\":\"STP\",\n\t\"pulpit_name\":\"Spanning tree pulpit\",\n\t\"faculty\":\"ИДИП\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pulpits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pulpits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePulpit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pulpit\":\"STP\",\n\t\"pulpit_name\":\"STP\",\n\t\"faculty\":\"ИДИП\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pulpits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pulpits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePulpit",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/pulpits/STP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pulpits",
+						"STP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERTSubject",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"subject\":\"STP\",\n\t\"subject_name\":\"Spanning tree protocol\",\n\t\"pulpit\":\"ЛВ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/subjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"subjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSubject",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"subject\":\"STP\",\n\t\"subject_name\":\"STP\",\n\t\"pulpit\":\"ЛВ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/subjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"subjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSubject",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/subjects/STP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"subjects",
+						"STP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERTAuditoriumType",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"auditorium_type\":\"LSS\",\n\t\"auditorium_typename\":\"Large system square\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriumstypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriumstypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTypeAud",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"auditorium_type\":\"LSS\",\n\t\"auditorium_typename\":\"LSS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriumstypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriumstypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTypeAud",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriumstypes/LSS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriumstypes",
+						"LSS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERTAuditorium",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"auditorium\":\"LTT\",\n\t\"auditorium_name\":\"Line Titan Tick\",\n\t\"auditorium_capacity\":\"90\",\n\t\"auditorium_type\":\"ЛБ-К\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateAuditorium",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"auditorium\":\"LTT\",\n\t\"auditorium_name\":\"LTT\",\n\t\"auditorium_capacity\":\"90\",\n\t\"auditorium_type\":\"ЛБ-К\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAuditorium",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/auditoriums/LTT",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auditoriums",
+						"LTT"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

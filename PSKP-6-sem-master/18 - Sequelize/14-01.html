@@ -1,0 +1,87 @@
+  <html>
+  <head>
+    <title>18 - Sequelize</title>
+  </head>
+  <body>
+<div id='get_result'></div>
+<button onclick="Get()">GET</button>
+	<br><br>
+    PULPIT: <input name="Pulpit" id="Pulpit" />
+    <br><br>
+    PULPIT_NAME: <input id="Pulpit_name" />
+    <br><br>
+	FACULTY: <input id="Faculty" />
+    <br><br>
+<button onclick="Post()">Post</button>
+	<br><br>
+    PULPIT: <input id="PulpitPut" />
+    <br><br>
+    PULPIT_NAME: <input id="Pulpit_namePut"  />
+    <br><br>
+	FACULTY: <input id="FacultyPut" />
+    <br><br>
+    <button onclick="Put()">Put</button>
+	<br><br>
+    PULPIT: <input id="PulpitDel" />
+    <br><br>
+    <button onclick="Del()">Del</button>
+    <script   type='text/javascript' >
+    function Get(){
+        console.log('GET');
+        fetch('http://localhost:5000/api/pulpits',{
+            method:'GET', mode: 'no-cors',
+            headers:{'Content-Type': 'application/json','Accept': 'application/json'}
+        }
+    )
+    .then(response=>{return response.json();})
+    .then((pdata)=> {
+        console.log('pdata',pdata);
+        get_result.innerHTML='';
+        pdata.forEach(el => {get_result.innerHTML+=(el.pulpit+'. '+el.pulpit_name+' '+el.faculty+'<br/>');  
+        });
+    });
+    }
+	function Post(){
+    console.log('Post');
+    fetch('http://localhost:5000/api/pulpits',{
+                method:'POST', mode: 'no-cors',
+                headers:{'Content-Type': 'application/json','Accept': 'application/json'},
+                body:JSON.stringify({pulpit:Pulpit.value,pulpit_name: Pulpit_name.value,faculty: Faculty.value})
+            }
+        )
+        .then(response=>{
+		console.log(JSON.stringify({pulpit:Pulpit.value,pulpit_name: Pulpit_name.value,faculty: Faculty.value}));
+		return response.json();})
+        .then((pdata)=> {
+            console.log('POST.pdata',pdata);
+            });
+        }
+	    function Put(){
+            console.log('PUT');
+            fetch('http://localhost:5000/api/pulpits',{
+                method:'PUT',
+                headers:{'Content-Type': 'application/json','Accept': 'application/json'},
+                body:JSON.stringify({pulpit:PulpitPut.value,pulpit_name: Pulpit_namePut.value,faculty: FacultyPut.value})
+            }
+        )
+        .then(response=>{return response.json();})
+        .then((pdata)=> {
+            console.log('PUT.pdata',pdata);
+            });
+        }
+	function Del(){
+        console.log('Delete');
+		console.log('http://localhost:5000/api/pulpits/'+PulpitDel.value);
+        fetch('http://localhost:5000/api/pulpits/'+PulpitDel.value,{
+            method:'Delete',
+            headers:{'Content-Type': 'application/json','Accept': 'application/json'},
+        }
+    )
+    .then(response=>{return response.json();})
+    .then((pdata)=> {
+        console.log('Delete.pdata',pdata);
+        });
+    }
+</script>            
+  </body>
+  </html>

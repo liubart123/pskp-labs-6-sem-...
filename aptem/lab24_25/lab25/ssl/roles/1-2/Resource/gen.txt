@@ -1,0 +1,4 @@
+--req+key
+openssl req –out certificatesigningrequest.csr -new -newkey rsa:2048 -nodes -keyout privatekey.key
+--req from key
+openssl req -out CSR.csr -key privateKey.key -new

@@ -1,0 +1,9 @@
+--genra
+openssl genrsa -des3 -out CA.key 2048
+awesome
+openssl req -x509 -new -key CA.key -days 700 -sha256 -out CA.crt
+set OPENSSL_CONF=d:/sem6/pskp/lab9SASL/content/config.cfg
+set OPENSSL_CONF=d:\sem6\pskp\lab9SASL\openssl-1.0.2j-fips-x86_64\OpenSSL\bin\openssl.cnf
+--genrsa
+openssl req -new -key LAB.key -out LAB.csr -sha256 -config LAB.cfg
+openssl x509 -req -in LAB.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out LAB.crt -days 365 -sha256 -extensions v3_req -extfile LAB.cfg

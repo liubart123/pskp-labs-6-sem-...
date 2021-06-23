@@ -42,10 +42,48 @@ selectAll = function (model){
 }
 
 selectFacultiesJoin = (faculty, model)=>{
-    if (model==='pulpits')
+    if (model==='pulpits'){
         model = models.Pulpit;
-    else if (model==='teachers')
+        return models.Faculty.findAll(
+        {
+            where:{faculty:faculty},
+            include:[
+                {model:model,required:true}
+            ]
+        }
+    )}
+    else if (model==='teachers'){
         model = models.Teacher;
+        return models.Faculty.findAll(
+            {
+                where:{faculty:faculty},
+                include:[
+                    {
+                        model:models.Pulpit,
+                        required:false,
+                        include:[{
+                            model:models.Teacher,
+                            required:true,
+                        }]
+                    }
+                ]
+            }
+        ).then(res=>{
+            let ft = {};
+            ft.teachers = [];
+            let asd = res[0].Pulpits;
+            for (let i=0;i<res[0].Pulpits.length;i++){
+                for (let j=0;j<res[0].Pulpits[i].Teachers.length;j++){
+                    ft.teachers.push(res[0].Pulpits[i].Teachers[j]);
+                }
+            }
+            return ft;
+            // res[0].Pulpits.forEach(element => {
+            //     element.Teachers.forEach(t=>{
+            //     })
+            // });
+        })
+    }
     else
         return new Promise((res,rej)=>rej({error:'epic feil!!^) no such table name'}))
     return models.Faculty.findAll(

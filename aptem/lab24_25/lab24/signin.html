@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Authentication form</title>
+
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+
+        <style>
+            html, body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+            }
+            .flex-container {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                /* display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex; */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                align-self: center;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <form method="POST" class="flex-container">
+            <label>
+                Username
+                <br />
+                <input type="text" class="form-control" autofocus placeholder="username" name="username" />
+            </label>
+
+            <label>
+                Password
+                <br />
+                <input type="password" class="form-control" placeholder="password" name="password" />
+            </label>
+
+            <div>
+                <!-- <input type="submit" value="Submit" /> -->
+                <button formaction="/login" class="btn btn-light">Sign in</button>
+                <a href="/signup" class="btn btn-light">Sign up</button>
+            </div>
+            
+        </form>
+        
+    </body>
+</html>

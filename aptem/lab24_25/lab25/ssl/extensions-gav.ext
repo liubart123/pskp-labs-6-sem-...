@@ -1,0 +1,12 @@
+# Extensions to add to a certificate request
+
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+
+subjectAltName = @alt_names
+
+
+[ alt_names ]
+DNS.1 = www.CA-LAB22-GAV
+DNS.2 = CA-LAB22-GAV
+DNS.3 = *.CA-LAB22-GAV

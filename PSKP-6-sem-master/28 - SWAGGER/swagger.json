@@ -1,0 +1,163 @@
+{
+    "swagger":"2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Swagger_lab28",
+        "description": "Phones API",
+        "termsOfService": "",
+        "contact":{
+            "name": "Swagger"
+        },
+        "lecense":{
+            "name": "1.0"
+        }
+    },
+    "host":"Chistyakova",
+    "basePath":"/api",
+    "schemes": ["http", "https"],
+    "consumes":["application/json"],
+    "produces":["application/json"],
+    "paths":{
+        "/phones":{
+            "get": {
+                "description":"Получить полный список из справочника телефонов в json",
+                "operationId": "selectPhones",
+                "produces":["application/json", "application/xml", "text/xml", "text/html"],
+                "parameters":
+                [
+                    {
+                    "name": "limit",
+                    "in": "query",
+                    "description": "Вывод первых limit контактов",
+                    "required": false,
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "Контакты выведены",
+                        "schema": {
+                            "type":"array",
+                            "items":{"$ref":"#/definitions/Phones"}
+                        }
+                    },
+                    "default":{
+                        "description": "Ошибка",
+                        "schema": {"$ref":"#/definitions/ErrorModel"}
+                    }
+                }
+            },
+            "post":{
+                "description":"Добавить новый контакт в справочник",
+                "operationId": "addPhone",
+                "produces":["application/json"],
+                "parameters":[
+                    {
+                        "name": "par",
+                        "in": "body",
+                        "description": "Данные нового контакта",
+                        "required": true,
+                        "schema": {"$ref": "#/definitions/Phone"}
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "Контакт добавлен",
+                        "schema": {"$ref":"#/definitions/Phone"}
+                    },
+                    "default":{
+                        "description": "Ошибка",
+                        "schema": {"$ref":"#/definitions/ErrorModel"}
+                    }
+                }
+            }
+        },
+        "/phone/{id}":{
+            "put":{
+                "description":"Корректировать строку справочника",
+                "operationId": "modifyPhone",
+                "produces":["application/json", "application/xml", "text/xml", "text/html"],
+                "parameters":
+                [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID контакта для изменения",
+                        "required": true,
+                        "type": "integer",
+                        "format":"int64"
+                    },
+                    {
+                        "name": "par",
+                        "in": "body",
+                        "description": "Новые данные контакта",
+                        "required": true,
+                        "schema": {"$ref": "#/definitions/Phone"}
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Контакт изменен",
+                        "schema":{"$ref":"#/definitions/Phone"}
+                    },
+                    "default":{
+                        "description":"Ошибка",
+                        "schema":{"$ref":"#/definitions/ErrorModel"}
+                    }
+                }
+            },
+            "delete":{
+                "description":"Удалить строку из справочника",
+                "operationId": "deletePhone",
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in":"path",
+                        "description":"ID удаляемого контакта",
+                        "required":true,
+                        "type":"integer",
+                        "format":"int64"
+                    }
+                ],
+                "responses":{
+                    "200":{"description":"Контакт удален"},
+                    "default":{
+                        "description":"Ошибка",
+                        "schema":{"$ref":"#/definitions/ErrorModel"}
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "Phones":{
+            "type":"object",
+            "allOf": [
+                {"$ref" :"#/definitions/Phone"},
+                {
+                    "required":["id"],
+                    "properties":{
+                        "id":{"type":"integer","format":"int64"}
+                    }
+                }
+            ] 
+        },
+        "Phone":{
+            "type":"object",
+            "required":["name"],
+            "properties":{
+                "name": {"type": "string"},
+                "phone":{"type": "string"}
+            }
+        },
+        "ErrorModel":{
+            "type":"object",
+            "required":["code", "message"],
+            "properties":{
+                "code": {"type":"integer","format":"int32"},
+                "message":{"type": "string"}
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Server HTML for lab29</title>
+        <!-- <script src="." -->
+    </head>
+
+    <body>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly -->
+
+        <div id="result">
+
+        </div>
+
+        <script>
+
+
+            // fetch('http://localhost:5000/functions.wasm', {
+            //     method: 'GET'
+            // })
+            // .then(res => {
+            //     res.arrayBuffer()
+            // })
+            // .then(buf => {
+            //     WebAssembly.instantiate(buf)
+            // })
+            // .then(({module, instance}) => {
+            //     alert(instance.exports.sum(10, 20));
+            // })
+
+            (async () => {
+
+                let responsePromise = fetch('http://localhost:5000/functions.wasm', {
+                    method: 'GET'
+                })
+
+                //Uncaught (in promise) TypeError: Failed to execute 'compile' on 'WebAssembly': Incorrect response MIME type. Expected 'application/wasm'.
+                let {module, instance} = await WebAssembly.instantiateStreaming(responsePromise);
+                const {sum, mul, sub} = instance.exports;
+
+                let x = 10, y = 20;
+
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerText = `sum(${x}, ${y}) = ${sum(x, y)}\nmul(${x}, ${y}) = ${mul(x, y)}\nsub(${x}, ${y}) = ${sub(x, y)}`;
+            })();
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>List</title>
+</head>
+<body>
+<br/><br/>
+<div style="height: 200px;overflow:scroll;width:200px;display:block;margin-left:auto;margin-right: auto" align="center">
+        {{#each names}}
+            {{>buttonString}}
+        {{/each}}
+</div>
+<br>
+<form action="./Add" style="margin-left:540px" method="POST">
+    <input name="String" type="text" style="width: 250px;" value="Фамилия,имя,отчество    Телефон"><br>
+    <input type="submit" value="Добавить" style="float: left;">
+</form>
+
+<script src="./disabled.js" type="text/javascript">
+</script>
+</body>
+</html>

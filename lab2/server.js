@@ -76,7 +76,8 @@ let GET_handler = (req, res) => {
                     'update Auditorium set AUDITORIUM_CAPACITY = AUDITORIUM_CAPACITY',
                     {
                         type:sequelize.QueryTypes.INSERT
-                    }
+                    },
+                    {transaction:t}
                 )
                 .then(result=>{
                     writeJsonHeader(res,200);
